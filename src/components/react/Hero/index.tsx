@@ -1,53 +1,52 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
-export default function Hero() {
-  const plane: any = useRef(null);
-  const maxRotate = 45;
+export default function Home() {
+  const container: any = useRef(null);
+  const stickyMask: any = useRef(null);
 
-  const manageMouseMove = (e: any) => {
-    if (plane.current) {
-      const x = e.clientX / window.innerWidth;
-      const y = e.clientY / window.innerHeight;
-      const perspective = window.innerWidth * 4;
-      const rotateX = maxRotate * x - maxRotate / 2;
-      const rotateY = (maxRotate * y - maxRotate / 2) * -1;
-      plane.current.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+  const initialMaskSize = 0.8;
+  const targetMaskSize = 100;
+  const easing = 0.15;
+  let easedScrollProgress = 0;
+
+  useEffect(() => {
+    if (container.current && stickyMask.current) {
+      requestAnimationFrame(animate);
     }
+  }, []);
+
+  const animate = () => {
+    // Ensure refs are defined before accessing their properties
+    if (!container.current || !stickyMask.current) return;
+
+    const maskSizeProgress = targetMaskSize * getScrollProgress();
+    stickyMask.current.style.webkitMaskSize =
+      (initialMaskSize + maskSizeProgress) * 100 + "%";
+
+    requestAnimationFrame(animate);
+  };
+
+  const getScrollProgress = () => {
+    if (!container.current || !stickyMask.current) return 0;
+
+    const scrollProgress =
+      stickyMask.current.offsetTop /
+      (container.current.getBoundingClientRect().height - window.innerHeight);
+    const delta = scrollProgress - easedScrollProgress;
+    easedScrollProgress += delta * easing;
+    return easedScrollProgress;
   };
 
   return (
-    <div
-      onMouseMove={(e) => {
-        manageMouseMove(e);
-      }}
-      className="h-screen w-screen flex"
-    >
+    <div ref={container} className="relative h-[300vh] bg-white">
       <div
-        ref={plane}
-        className="flex-1 flex flex-col justify-center text-left items-center"
+        ref={stickyMask}
+        className="stickyMask flex overflow-hidden sticky top-0 h-screen items-center justify-center"
       >
-        <Text3d primary={"Kelsie"} secondary={"Kelsie"} />
-        <Text3d primary={"Murphy"} secondary={"Murphy"} />
+        <video autoPlay muted loop>
+          <source src="/assets/space.mp4" type="video/mp4" />
+        </video>
       </div>
-    </div>
-  );
-}
-
-function Text3d({
-  primary,
-  secondary,
-}: {
-  primary: string;
-  secondary: string;
-}) {
-  return (
-    <div className="relative textContainer">
-      <p className="text-[8vw] leading-[8vw] font-bold m-0 text-[#b7ab98] primary">
-        {primary}
-      </p>
-      <p className="text-[8vw] leading-[8vw] font-bold m-0 absolute top-0 opacity-0 text-white secondary">
-        {secondary}
-      </p>
     </div>
   );
 }
