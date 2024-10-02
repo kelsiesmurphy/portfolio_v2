@@ -1,7 +1,8 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import EarthCanvas from "../components/react-earth/Earth";
-import Projects from "../components/react-earth/Projects";
+import EarthCanvas from "../components/react/Earth";
+import Hero from "../components/react/Hero";
+import Projects from "../components/react/Projects";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
@@ -27,12 +28,12 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
       class="bg-[url('/assets/2k_stars_milky_way.jpg')] bg-slate-950 bg-center bg-cover w-full h-full fixed top-0 left-0 z-0"
     >
     </div> -->
-    <section class="relative z-20 h-[100vh] flex justify-center items-center">
-      <h1 class="text-white">Kelsie Murphy</h1>
+    <section>
+      <Hero client:load />
     </section>
     <section class="relative z-10 h-[100vh] flex items-center justify-center">
       <EarthCanvas client:only />
-      <Projects client:load/>
+      <Projects client:load />
     </section>
     <section class="relative z-10 h-[100vh]"></section>
   </body>

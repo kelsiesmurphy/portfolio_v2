@@ -135,6 +135,34 @@ hr {
   white-space: nowrap;
 }
 
+/* Hero */
+.textContainer {
+  transform-style: preserve-3d;
+  transition: transform 0.4s;
+}
+
+.textContainer p {
+  transition: all 0.4s;
+}
+
+.textContainer .secondary {
+  transform: rotateX(-90deg) translateY(3.5vw);
+  transform-origin: bottom center;
+}
+
+.textContainer:hover {
+  transform: rotateX(90deg);
+}
+
+.textContainer:hover .primary {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+.textContainer:hover .secondary {
+  opacity: 1;
+}
+
 /* Projects */
 .relative.z-10 {
   z-index: 10;
