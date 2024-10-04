@@ -38,13 +38,13 @@ export default function Home() {
   };
 
   return (
-    <div ref={container} className="relative h-[300vh] bg-white">
+    <div ref={container} className="relative h-[300vh] bg-zinc-950">
       <div
         ref={stickyMask}
         className="stickyMask flex overflow-hidden sticky top-0 h-screen items-center justify-center"
       >
         <video autoPlay muted loop>
-          <source src="/assets/space.mp4" type="video/mp4" />
+          <source src="/assets/forest.mp4" type="video/mp4" />
         </video>
       </div>
     </div>

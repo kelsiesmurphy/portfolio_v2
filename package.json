@@ -25,6 +25,7 @@
     "astro-lenis": "^1.0.0",
     "framer-motion": "^11.9.0",
     "framer-motion-3d": "^11.9.0",
+    "gsap": "^3.12.5",
     "lenis": "^1.1.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
