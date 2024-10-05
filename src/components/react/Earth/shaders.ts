@@ -1,11 +1,11 @@
 import {
-    curveUp,
-    perturbNormalArb,
-    simplexNoise,
-    valueRemap,
-  } from "../utils/shader-utils";
-  
-  export const earthVertexShader = /*glsl*/ `
+  curveUp,
+  perturbNormalArb,
+  simplexNoise,
+  valueRemap,
+} from "@/components/react/utils/shader-utils";
+
+export const earthVertexShader = /*glsl*/ `
   varying vec3 vNormal;
   varying vec2 vUv;
   varying vec3 wPos;
@@ -18,8 +18,8 @@ import {
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
   `;
-  
-  export const earthFragmentShader = /*glsl*/ `
+
+export const earthFragmentShader = /*glsl*/ `
   varying vec3 vNormal;
   varying vec2 vUv;
   varying vec3 wPos;

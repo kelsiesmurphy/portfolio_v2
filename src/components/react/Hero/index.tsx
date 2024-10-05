@@ -38,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <div ref={container} className="relative h-[300vh] bg-zinc-950">
+    <div ref={container} className="relative h-[300vh] bg-background">
       <div
         ref={stickyMask}
         className="stickyMask flex overflow-hidden sticky top-0 h-screen items-center justify-center"

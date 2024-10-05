@@ -19,7 +19,7 @@ export default function Descriptions({ data, selectedProject }: any) {
                 backgroundColor: color,
               }}
             >
-              <p className="relative z-10 text-3xl text-zinc-950 uppercase font-bold md:text-[8vw] leading-[7.5vw] m-0">
+              <p className="relative z-10 text-3xl uppercase font-bold md:text-[8vw] leading-[7.5vw] m-0">
                 {title}
               </p>
             </div>

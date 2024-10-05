@@ -1,17 +1,17 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
-import { SITE_TITLE } from "../consts";
+import { SITE_TITLE } from "@/consts";
+import { ModeToggle } from "./react/ModeToggle";
 ---
 
 <header>
-  <nav class="flex gap-4 text-white justify-between p-4">
+  <nav class="flex gap-4 justify-between items-center p-4">
     <p>
-      <a
-        href="/"
-        class="font-bold text-inherit hover:text-zinc-500 uppercase text-lg"
-        >{SITE_TITLE}</a>
+      <a href="/" class="font-bold text-inherit uppercase text-lg"
+        >{SITE_TITLE}</a
+      >
     </p>
-    <div class="flex gap-12">
+    <div class="flex gap-12 items-center">
       <div class="flex gap-4">
         <HeaderLink href="/blog">Blog</HeaderLink>
         <HeaderLink href="/about">About</HeaderLink>
@@ -19,7 +19,7 @@ import { SITE_TITLE } from "../consts";
       <div class="flex gap-4">
         <a
           href="https://www.linkedin.com/in/kelsiesmurphy/"
-          class="text-inherit hover:text-zinc-500"
+          class="text-inherit"
           target="_blank"
         >
           <span class="sr-only">Follow Kelsie Murphy on LinkedIn</span>
@@ -43,7 +43,7 @@ import { SITE_TITLE } from "../consts";
         </a>
         <a
           href="https://x.com/kelsiesmurphy"
-          class="text-inherit hover:text-zinc-500"
+          class="text-inherit"
           target="_blank"
         >
           <span class="sr-only"
@@ -67,6 +67,7 @@ import { SITE_TITLE } from "../consts";
           </svg>
         </a>
       </div>
+      <ModeToggle client:load />
     </div>
   </nav>
 </header>

@@ -1,12 +1,10 @@
 import gsap from "gsap";
 
 export default function BlogList({ posts }: any) {
-  console.log(posts);
   const manageMouseEnter = (e: any, index: number) => {
     gsap.to(e.target, {
-      top: "-2vw",
+      top: "-2.2vw",
       backgroundColor: posts[index].data.color,
-      color: "white",
       duration: 0.3,
     });
   };
@@ -14,9 +12,8 @@ export default function BlogList({ posts }: any) {
   const manageMouseLeave = (e: any) => {
     gsap.to(e.target, {
       top: "0",
-      backgroundColor: "#09090b",
+      backgroundColor: "",
       duration: 0.3,
-      color: "white",
       delay: 0.1,
     });
   };
@@ -35,12 +32,12 @@ export default function BlogList({ posts }: any) {
                 manageMouseLeave(e);
               }}
               key={index}
-              className="border-t text-white border-zinc-700 px-4 flex justify-between items-center gap-8 cursor-pointer relative -mb-[2vw] bg-zinc-950"
+              className="border-t-2 border-muted px-4 flex justify-between items-center gap-8 cursor-pointer relative -mb-[2.2vw] bg-background"
             >
               <p className="m-0 text-[5vw] uppercase pointer-events-none">
                 {post.data.title}
               </p>
-              <p className="text-zinc-500">
+              <p className="text-muted-foreground">
                 {new Date(post.data.pubDate).toLocaleDateString()}
               </p>
             </a>

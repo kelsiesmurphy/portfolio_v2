@@ -6,7 +6,7 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { motion } from "framer-motion-3d";
 import { earthFragmentShader, earthVertexShader } from "./shaders";
 import { SRGBColorSpace, Vector3 } from "three";
-import { useLightDirection } from "../hooks/useLightDirection";
+import { useLightDirection } from "@/components/react/hooks/useLightDirection";
 import { Atmosphere } from "../Atmosphere";
 
 export interface EarthProps {
@@ -25,8 +25,6 @@ export default function EarthCanvas() {
 
   const EarthMesh = ({ lightDirection }: EarthProps) => {
     const { width } = useThree((state) => state.viewport);
-
-    console.log(width)
 
     const [earthDayTexture, nightTexture, cloudTexture] = useLoader(
       TextureLoader,

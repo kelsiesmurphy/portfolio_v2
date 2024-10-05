@@ -1,9 +1,9 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import EarthCanvas from "../components/react/Earth";
-import Hero from "../components/react/Hero";
-import Projects from "../components/react/Projects";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import BaseHead from "@/components/BaseHead.astro";
+import EarthCanvas from "@/components/react/Earth";
+import Hero from "@/components/react/Hero";
+import Projects from "@/components/react/Projects";
+import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
 ---
 
 <script>
@@ -23,7 +23,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body class="bg-zinc-950">
+  <body>
     <!-- <div
       class="bg-[url('/assets/2k_stars_milky_way.jpg')] bg-slate-950 bg-center bg-cover w-full h-full fixed top-0 left-0 z-0"
     >
