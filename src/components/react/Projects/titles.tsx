@@ -11,11 +11,13 @@ export default function Titles({ data, setSelectedProject }: any) {
     <div className="w-full border-t border-[rgba(183,171,152,0.25)]">
       {data.map((project: any, i: React.Key | null | undefined) => {
         return (
-          <Title
-            key={i}
-            data={{ ...project, i }}
-            setSelectedProject={setSelectedProject}
-          />
+          <a href={`/projects/${project.slug}/`}>
+            <Title
+              key={i}
+              data={{ ...project.data, i }}
+              setSelectedProject={setSelectedProject}
+            />
+          </a>
         );
       })}
     </div>
@@ -50,7 +52,7 @@ function Title({ data, setSelectedProject }: any) {
       >
         <motion.p
           style={{ clipPath: clip }}
-          className="m-0 uppercase font-bold text-3xl md:text-[8vw] leading-[7.5vw] text-[#b7ab98] relative z-20"
+          className="m-0 uppercase cursor-pointer font-bold text-3xl md:text-[8vw] leading-[7.5vw] text-white relative z-20"
         >
           {title}
         </motion.p>

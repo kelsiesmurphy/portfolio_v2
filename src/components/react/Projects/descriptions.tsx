@@ -5,10 +5,11 @@ export default function Descriptions({ data, selectedProject }: any) {
     <div className="absolute top-[3px] h-full w-full z-20 pointer-events-none">
       {data.map(
         (
-          project: { title: any; color: any },
+          project: { data: { title: any; color: any } },
           i: React.Key | null | undefined
         ) => {
-          const { title, color } = project;
+          const { title, color } = project.data;
+          console.log(selectedProject)
           return (
             <div
               key={i}

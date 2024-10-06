@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <main className="h-screen flex items-center justify-center">
-      <div className="w-[50vw] text-[#b7ab98]">
+      <div className="w-[50vw] text-white">
         <div className="introLine">
           <p>Kelsie</p>
           <p>Murphy</p>
