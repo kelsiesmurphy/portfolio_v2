@@ -15,7 +15,7 @@ const data = [
   },
   {
     title: "CommunitySpot",
-    color: "#ffffff",
+    color: "#71717a",
     speed: 0.67,
   },
   {
