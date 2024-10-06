@@ -6,8 +6,8 @@ import { TextureLoader } from "three/src/loaders/TextureLoader.js";
 import { motion } from "framer-motion-3d";
 import { earthFragmentShader, earthVertexShader } from "./shaders";
 import { SRGBColorSpace, Vector3 } from "three";
-import { useLightDirection } from "@/components/react/hooks/useLightDirection";
-import { Atmosphere } from "../Atmosphere";
+import { useLightDirection } from "@/components/react/Projects/Earth/hooks/useLightDirection";
+import { Atmosphere } from "./Atmosphere";
 
 export interface EarthProps {
   lightDirection: Vector3;

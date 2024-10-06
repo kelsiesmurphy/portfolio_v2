@@ -1,9 +1,10 @@
 ---
 import BaseHead from "@/components/BaseHead.astro";
-import EarthCanvas from "@/components/react/Earth";
+import EarthCanvas from "@/components/react/Projects/Earth";
 import Hero from "@/components/react/Hero";
 import Projects from "@/components/react/Projects";
 import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
+import Footer from "@/components/react/Footer";
 ---
 
 <script>
@@ -23,7 +24,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
-  <body>
+  <body class="bg-zinc-950">
     <!-- <div
       class="bg-[url('/assets/2k_stars_milky_way.jpg')] bg-slate-950 bg-center bg-cover w-full h-full fixed top-0 left-0 z-0"
     >
@@ -31,10 +32,10 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "@/consts";
     <section>
       <Hero client:load />
     </section>
-    <section class="relative z-10 h-[100vh] flex items-center justify-center">
+    <section class="relative z-10 h-screen flex items-center justify-center">
       <EarthCanvas client:only />
       <Projects client:load />
     </section>
-    <section class="relative z-10 h-[100vh]"></section>
+    <section class="relative z-10"><Footer client:load /></section>
   </body>
 </html>

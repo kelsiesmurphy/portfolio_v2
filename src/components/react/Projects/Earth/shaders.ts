@@ -3,7 +3,7 @@ import {
   perturbNormalArb,
   simplexNoise,
   valueRemap,
-} from "@/components/react/utils/shader-utils";
+} from "@/components/react/Projects/Earth/utils/shader-utils";
 
 export const earthVertexShader = /*glsl*/ `
   varying vec3 vNormal;

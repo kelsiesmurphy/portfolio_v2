@@ -108,3 +108,16 @@
 .transition-[clip-path] {
   transition: clip-path 0.4s;
 }
+
+/* Footer */
+.introLine {
+  display: flex;
+  font-size: 6vw;
+  font-weight: 400;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+
+.introLine p {
+  margin: 0px;
+}
