@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "@/components/BaseHead.astro";
-import Header from "@/components/Header.astro";
+import Navigation from "@/components/react/Navigation";
 
 type Props = CollectionEntry<"project">["data"];
 
@@ -14,7 +14,7 @@ const { title, description } = Astro.props;
   </head>
 
   <body>
-    <Header />
+    <Navigation client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
       <article class="flex-1 max-w-2xl prose dark:prose-invert">
         <div>
