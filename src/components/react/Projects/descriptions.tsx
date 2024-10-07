@@ -9,7 +9,6 @@ export default function Descriptions({ data, selectedProject }: any) {
           i: React.Key | null | undefined
         ) => {
           const { title, color } = project.data;
-          console.log(selectedProject)
           return (
             <div
               key={i}

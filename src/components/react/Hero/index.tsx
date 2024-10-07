@@ -44,7 +44,7 @@ export default function Home() {
         className="stickyMask flex overflow-hidden sticky top-0 h-screen items-center justify-center"
       >
         <video autoPlay muted loop>
-          <source src="/assets/forest.mp4" type="video/mp4" />
+          <source src="/assets/waves.mp4" type="video/mp4" />
         </video>
       </div>
     </div>

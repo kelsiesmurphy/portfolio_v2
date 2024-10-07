@@ -11,9 +11,8 @@ export default function Titles({ data, setSelectedProject }: any) {
     <div className="w-full border-t border-[rgba(183,171,152,0.25)]">
       {data.map((project: any, i: React.Key | null | undefined) => {
         return (
-          <a href={`/projects/${project.slug}/`}>
+          <a key={i} href={`/projects/${project.slug}/`}>
             <Title
-              key={i}
               data={{ ...project.data, i }}
               setSelectedProject={setSelectedProject}
             />
