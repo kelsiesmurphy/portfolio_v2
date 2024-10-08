@@ -8,7 +8,7 @@ import {
 
 export default function Titles({ data, setSelectedProject }: any) {
   return (
-    <div className="w-full border-t border-[rgba(183,171,152,0.25)]">
+    <div className="w-full border-t border-secondary">
       {data.map((project: any, i: React.Key | null | undefined) => {
         return (
           <a key={i} href={`/projects/${project.slug}/`}>

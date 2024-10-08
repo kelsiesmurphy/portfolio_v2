@@ -32,9 +32,9 @@ export default function BlogList({ posts }: any) {
                 manageMouseLeave(e);
               }}
               key={index}
-              className="border-t-2 border-muted px-4 flex justify-between items-center gap-8 cursor-pointer relative -mb-[2.2vw] bg-background"
+              className="border-t-2 py-4 md:py-0 border-muted px-4 flex justify-between items-center gap-8 cursor-pointer relative -mb-[2.2vw] bg-background"
             >
-              <p className="m-0 text-[5vw] uppercase pointer-events-none">
+              <p className="m-0 text-2xl md:text-[5vw] md:leading-[8vw] uppercase pointer-events-none">
                 {post.data.title}
               </p>
               <p className="text-muted-foreground">
