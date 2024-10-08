@@ -1,25 +1,10 @@
-import * as React from "react";
-import { Github, Linkedin, Menu, Minus, Plus } from "lucide-react";
+import { Github, Linkedin, Menu } from "lucide-react";
 
 import { Button, buttonVariants } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { ModeToggleMobile } from "./ModeToggleMobile";
 
 export function MobileDrawer() {
-  const [goal, setGoal] = React.useState(350);
-
-  function onClick(adjustment: number) {
-    setGoal(Math.max(200, Math.min(400, goal + adjustment)));
-  }
-
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -105,6 +90,7 @@ export function MobileDrawer() {
               </svg>
               Follow on X
             </a>
+            <ModeToggleMobile />
           </div>
         </div>
       </DrawerContent>
