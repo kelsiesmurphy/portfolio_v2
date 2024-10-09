@@ -5,6 +5,7 @@ order: 1
 color: '#3e7e42'
 speed: 0.5
 showGallery: true
+offsetAmount: 22
 ---
 
 ## Overview

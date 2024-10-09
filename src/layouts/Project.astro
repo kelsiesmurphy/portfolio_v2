@@ -3,10 +3,11 @@ import type { CollectionEntry } from "astro:content";
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/react/Navigation";
 import Gallery from "@/components/react/Projects/gallery";
+import ProjectFooter from "@/components/react/Projects/footer";
 
 type Props = CollectionEntry<"project">["data"];
 
-const { title, description, color, showGallery } = Astro.props;
+const { title, description, color, showGallery, offsetAmount } = Astro.props;
 ---
 
 <html lang="en">
@@ -34,5 +35,6 @@ const { title, description, color, showGallery } = Astro.props;
         </div>
       </article>
     </main>
+    <ProjectFooter {title} {color} {offsetAmount} client:load />
   </body>
 </html>

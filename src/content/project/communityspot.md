@@ -5,6 +5,7 @@ order: 2
 color: '#71717a'
 speed: 0.67
 showGallery: true
+offsetAmount: 24
 ---
 
 ## Overview
