@@ -1,8 +1,10 @@
 ---
 title: 'GreenCheck'
+description: ''
 order: 4
 color: '#2a5e47'
 speed: 0.5
+showGallery: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

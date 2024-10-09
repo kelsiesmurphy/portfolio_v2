@@ -1,8 +1,10 @@
 ---
 title: 'CommunitySpot'
+description: ''
 order: 2
 color: '#71717a'
 speed: 0.67
+showGallery: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

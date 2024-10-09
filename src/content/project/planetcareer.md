@@ -1,8 +1,10 @@
 ---
 title: 'PlanetCareer'
+description: ''
 order: 1
 color: '#3e7e42'
 speed: 0.5
+showGallery: true
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

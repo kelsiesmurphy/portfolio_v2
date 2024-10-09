@@ -5,7 +5,7 @@ import Navigation from "@/components/react/Navigation";
 
 type Props = CollectionEntry<"project">["data"];
 
-const { title, description } = Astro.props;
+const { title, description, showGallery } = Astro.props;
 ---
 
 <html lang="en">
@@ -16,7 +16,7 @@ const { title, description } = Astro.props;
   <body>
     <Navigation client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
-      <article class="flex-1 max-w-2xl prose dark:prose-invert">
+      <article class="flex-1 prose dark:prose-invert">
         <div>
           <h1>{title}</h1>
           <hr />
