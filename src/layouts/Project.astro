@@ -2,10 +2,11 @@
 import type { CollectionEntry } from "astro:content";
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/react/Navigation";
+import Gallery from "@/components/react/Projects/gallery";
 
 type Props = CollectionEntry<"project">["data"];
 
-const { title, description, showGallery } = Astro.props;
+const { title, description, color, showGallery } = Astro.props;
 ---
 
 <html lang="en">
@@ -16,12 +17,21 @@ const { title, description, showGallery } = Astro.props;
   <body>
     <Navigation client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
-      <article class="flex-1 prose dark:prose-invert">
+      <article class="flex-1 prose dark:prose-invert max-w-none">
         <div>
-          <h1>{title}</h1>
-          <hr />
+          <div class="flex justify-center">
+            <div class="pb-24 space-y-1">
+              <h1 class="uppercase md:4xl mb-3">{title}</h1>
+              <div style={{ backgroundColor: color }} class="h-1 w-full"></div>
+            </div>
+          </div>
+          {showGallery && <Gallery client:load />}
         </div>
-        <slot />
+        <div class="flex justify-center py-12">
+          <div class="max-w-2xl">
+            <slot />
+          </div>
+        </div>
       </article>
     </main>
   </body>
