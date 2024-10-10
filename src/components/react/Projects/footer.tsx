@@ -81,8 +81,8 @@ const Logos = ({ scrollProgress }: { scrollProgress: MotionValue<number> }) => {
         style={{ y }}
         className="h-full flex flex-wrap justify-center gap-6 md:gap-20 items-center p-4 md:p-10"
       >
-        {images.map((path) => (
-          <TooltipProvider>
+        {images.map((path, index) => (
+          <TooltipProvider key={index}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button

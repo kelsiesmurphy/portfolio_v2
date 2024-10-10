@@ -46,7 +46,7 @@ export default function Gallery() {
   return (
     <div
       ref={gallery}
-      className="h-[175vh] not-prose bg-background relative flex gap-[2vw] p-[2vw] overflow-hidden"
+      className="h-[175vh] w-screen not-prose relative flex gap-[2vw] p-[2vw] overflow-hidden"
     >
       <Column images={[images[0], images[1], images[2]]} y={y} />
       <Column images={[images[3], images[4], images[5]]} y={y2} />
