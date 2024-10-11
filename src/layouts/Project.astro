@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseHead from "@/components/BaseHead.astro";
 import Navigation from "@/components/react/Navigation";
 import Gallery from "@/components/react/Projects/gallery";
@@ -8,6 +8,10 @@ import ProjectFooter from "@/components/react/Projects/footer";
 type Props = CollectionEntry<"project">["data"];
 
 const { title, description, color, showGallery, offsetAmount } = Astro.props;
+
+const projects = (await getCollection("project")).sort(
+  (a, b) => a.data.order.valueOf() - b.data.order.valueOf()
+);
 ---
 
 <html lang="en">
@@ -16,7 +20,7 @@ const { title, description, color, showGallery, offsetAmount } = Astro.props;
   </head>
 
   <body>
-    <Navigation client:load />
+    <Navigation projects={projects} client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
       <article class="flex-1 prose dark:prose-invert max-w-none">
         <div>

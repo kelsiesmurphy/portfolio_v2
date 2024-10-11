@@ -18,7 +18,8 @@ const AboutTimeline = () => {
       sortOrder: 2,
       date: "November 2021 - November 2022",
       title: "Momentum Group",
-      description: "Joined a small Australian agency building low-code applications using Bubble.io. I worked in a small agile team, where we built and shipped many applications to clients.",
+      description:
+        "Joined a small Australian agency building low-code applications using Bubble.io. I worked in a small agile team, where we built and shipped many applications to clients.",
     },
     {
       sortOrder: 3,
@@ -42,9 +43,9 @@ const AboutTimeline = () => {
       <ul className="relative border-l border-secondary">
         {timelineItems
           .sort((a, b) => b.sortOrder - a.sortOrder)
-          .map((item) => {
+          .map((item, index) => {
             return (
-              <li className="mb-10 ml-4">
+              <li className="mb-10 ml-4" key={index}>
                 <div className="absolute -left-1.5 mt-1.5 h-3 w-3 rounded-full border border-foreground bg-secondary"></div>
                 <time className="mb-1 text-sm font-normal leading-none text-muted-foreground">
                   {item.date}

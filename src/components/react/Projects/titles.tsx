@@ -5,8 +5,17 @@ import {
   useTransform,
   useMotionTemplate,
 } from "framer-motion";
+import type { CollectionEntry } from "astro:content";
 
-export default function Titles({ data, setSelectedProject }: any) {
+type Project = CollectionEntry<"project">["data"];
+
+export default function Titles({
+  data,
+  setSelectedProject,
+}: {
+  data: Project[];
+  setSelectedProject: any;
+}) {
   return (
     <div className="w-full border-t border-secondary">
       {data.map((project: any, i: React.Key | null | undefined) => {

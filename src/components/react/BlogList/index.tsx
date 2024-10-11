@@ -18,6 +18,15 @@ export default function BlogList({ posts }: any) {
     });
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }).format(date);
+  };
+
   return (
     <div className="flex py-12 md:py-32">
       <div className="relative w-full">
@@ -38,7 +47,7 @@ export default function BlogList({ posts }: any) {
                 {post.data.title}
               </p>
               <p className="text-muted-foreground">
-                {new Date(post.data.pubDate).toLocaleDateString()}
+                {formatDate(post.data.pubDate)}
               </p>
             </a>
           );

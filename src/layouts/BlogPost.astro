@@ -1,12 +1,16 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import BaseHead from "@/components/BaseHead.astro";
 import FormattedDate from "@/components/FormattedDate.astro";
 import Navigation from "@/components/react/Navigation";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate } = Astro.props;
+
+const projects = (await getCollection("project")).sort(
+  (a, b) => a.data.order.valueOf() - b.data.order.valueOf()
+);
 ---
 
 <html lang="en">
@@ -15,7 +19,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
   </head>
 
   <body>
-    <Navigation client:load />
+    <Navigation {projects} client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
       <article class="flex-1 max-w-2xl prose dark:prose-invert">
         <div>

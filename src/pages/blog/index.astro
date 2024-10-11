@@ -10,6 +10,10 @@ const posts = (await getCollection("blog")).sort((a, b) => {
   const bDate = b.data.pubDate ? b.data.pubDate.valueOf() : 0;
   return bDate - aDate;
 });
+
+const projects = (await getCollection("project")).sort(
+  (a, b) => a.data.order.valueOf() - b.data.order.valueOf()
+);
 ---
 
 <!doctype html>
@@ -18,7 +22,7 @@ const posts = (await getCollection("blog")).sort((a, b) => {
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <Navigation client:load />
+    <Navigation projects={projects} client:load />
     <main>
       <BlogList posts={posts} client:load />
     </main>

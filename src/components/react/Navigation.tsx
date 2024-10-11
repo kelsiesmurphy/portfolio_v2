@@ -1,16 +1,11 @@
 import { buttonVariants, Button } from "@/components/ui/button";
-import { useState } from "react";
 import { SITE_TITLE } from "@/consts";
-import Socials from "./Socials";
 import { MobileDrawer } from "./MobileDrawer";
 import { ModeToggle } from "./ModeToggle";
+import Socials from "./Socials";
+import { NavigationDropdown } from "./NavigationDropdown";
 
-export default function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
+export default function Navigation({ projects }: any) {
   return (
     <>
       <header className="px-4 flex min-h-28 md:min-h-40 w-full justify-center">
@@ -25,7 +20,8 @@ export default function Navigation() {
                 {SITE_TITLE}
               </a>
             </Button>
-            <div className="hidden md:block">
+            <div className="hidden md:flex gap-2">
+              <NavigationDropdown projects={projects} />
               <a href="blog" className={buttonVariants({ variant: "link" })}>
                 Blog
               </a>
@@ -38,7 +34,7 @@ export default function Navigation() {
             <Socials />
             <ModeToggle />
             <div className="md:hidden">
-              <MobileDrawer />
+              <MobileDrawer projects={projects} />
             </div>
           </div>
         </nav>
