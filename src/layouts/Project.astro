@@ -33,7 +33,7 @@ const projects = (await getCollection("project")).sort(
           {showGallery && <Gallery client:load />}
         </div>
         <div class="flex justify-center py-12">
-          <div class="max-w-2xl">
+          <div class="max-w-2xl px-4">
             <slot />
           </div>
         </div>
