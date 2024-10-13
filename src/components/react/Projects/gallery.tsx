@@ -1,22 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { useTransform, useScroll, motion, MotionValue } from "framer-motion";
 
-const images = [
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-  "1.jpg",
-];
+// const images = [
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+//   "1.jpg",
+// ];
 
-export default function Gallery() {
+export default function Gallery({galleryImages}: {galleryImages:string[]}) {
   const gallery = useRef(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -48,10 +48,10 @@ export default function Gallery() {
       ref={gallery}
       className="h-[175vh] w-screen not-prose relative flex gap-[2vw] p-[2vw] overflow-hidden"
     >
-      <Column images={[images[0], images[1], images[2]]} y={y} />
-      <Column images={[images[3], images[4], images[5]]} y={y2} />
-      <Column images={[images[6], images[7], images[8]]} y={y3} />
-      <Column images={[images[9], images[10], images[11]]} y={y4} />
+      <Column images={[galleryImages[0], galleryImages[1], galleryImages[2]]} y={y} />
+      <Column images={[galleryImages[3], galleryImages[4], galleryImages[5]]} y={y2} />
+      <Column images={[galleryImages[6], galleryImages[7], galleryImages[8]]} y={y3} />
+      <Column images={[galleryImages[9], galleryImages[10], galleryImages[11]]} y={y4} />
     </div>
   );
 }
@@ -69,9 +69,9 @@ const Column = ({
         return (
           <div
             key={i}
-            className="h-full w-full relative rounded-[1vw] overflow-hidden"
+            className="h-full w-full relative rounded-[1vw] shadow-lg overflow-hidden"
           >
-            <img src={`/${src}`} alt="image" className="object-cover" />
+            <img src={`/projects/${src}`} alt="image" className="object-cover" />
           </div>
         );
       })}

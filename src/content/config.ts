@@ -22,6 +22,7 @@ const project = defineCollection({
     speed: z.number().optional(),
     showGallery: z.boolean().optional(),
     offsetAmount: z.number().optional(),
+    galleryImages: z.array(z.string())
   }),
 });
 

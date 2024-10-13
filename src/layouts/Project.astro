@@ -7,7 +7,7 @@ import ProjectFooter from "@/components/react/Projects/footer";
 
 type Props = CollectionEntry<"project">["data"];
 
-const { title, description, color, showGallery, offsetAmount } = Astro.props;
+const { title, description, color, showGallery, offsetAmount, galleryImages } = Astro.props;
 
 const projects = (await getCollection("project")).sort(
   (a, b) => a.data.order.valueOf() - b.data.order.valueOf()
@@ -30,7 +30,7 @@ const projects = (await getCollection("project")).sort(
               <div style={{ backgroundColor: color }} class="h-1 w-full"></div>
             </div>
           </div>
-          {showGallery && <Gallery client:load />}
+          {showGallery && <Gallery {galleryImages} client:load />}
         </div>
         <div class="flex justify-center py-12">
           <div class="max-w-2xl px-4">
