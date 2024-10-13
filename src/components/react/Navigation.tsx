@@ -22,10 +22,10 @@ export default function Navigation({ projects }: any) {
             </Button>
             <div className="hidden md:flex gap-2">
               <NavigationDropdown projects={projects} />
-              <a href="blog" className={buttonVariants({ variant: "link" })}>
+              <a href="/blog" className={buttonVariants({ variant: "link" })}>
                 Blog
               </a>
-              <a href="about" className={buttonVariants({ variant: "link" })}>
+              <a href="/about" className={buttonVariants({ variant: "link" })}>
                 About Me
               </a>
             </div>
