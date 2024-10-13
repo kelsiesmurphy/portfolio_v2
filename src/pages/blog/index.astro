@@ -19,7 +19,7 @@ const projects = (await getCollection("project")).sort(
 <!doctype html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={"Blog"} description={SITE_DESCRIPTION} />
   </head>
   <body>
     <Navigation projects={projects} client:load />
