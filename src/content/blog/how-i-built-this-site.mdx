@@ -1,56 +1,211 @@
 ---
-title: 'How I built this site'
+title: 'How I built my portfolio website'
 description: 'In this blog post I explain the process to building this portfolio website, from the decisions about the tech stack, to the approach I took.'
 pubDate: 'October 13 2024'
 heroImage: '/blog-placeholder-3.jpg'
 color: '#F06318'
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-incididunt ut labore et dolore magna aliqua. Vitae ultricies leo integer
-malesuada nunc vel risus commodo viverra. Adipiscing enim eu turpis egestas
-pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse
-platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus et malesuada
-fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea
-dictumst quisque sagittis. Integer quis auctor elit sed vulputate mi. Dictumst
-quisque sagittis purus sit amet.
+In this post, I'll walk you through how I built my personal website using a combination of [ThreeJS](https://threejs.org/), [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/), and [Astro](https://astro.build/). I’ll also show you how I integrated a Markdown-powered blog. If you're looking to create a highly interactive, performance-driven site, these tools might be perfect for you!
 
-Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum
-quisque non tellus. Habitasse platea dictumst quisque sagittis purus sit amet.
-Tellus molestie nunc non blandit massa. Cursus vitae congue mauris rhoncus.
-Accumsan tortor posuere ac ut. Fringilla urna porttitor rhoncus dolor. Elit
-ullamcorper dignissim cras tincidunt lobortis. In cursus turpis massa tincidunt
-dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus
-arcu felis bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed
-tempus urna et pharetra pharetra massa massa ultricies mi.
+### Table of Contents
 
-Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam
-sit amet nisl suscipit. Lacus viverra vitae congue eu consequat ac felis donec.
-Egestas integer eget aliquet nibh praesent tristique magna sit amet. Eget magna
-fermentum iaculis eu non diam. In vitae turpis massa sed elementum. Tristique et
-egestas quis ipsum suspendisse ultrices. Eget lorem dolor sed viverra ipsum. Vel
-turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat semper viverra
-nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim
-praesent elementum facilisis. Ultrices tincidunt arcu non sodales neque. Tempus
-egestas sed sed risus pretium quam vulputate. Viverra suspendisse potenti nullam
-ac tortor vitae purus faucibus ornare. Fringilla urna porttitor rhoncus dolor
-purus non. Amet dictum sit amet justo donec enim.
+1. [Project Overview](#project-overview)
+2. [Why I Chose These Technologies](#why-i-chose-these-technologies)
+3. [Setting Up Astro for Static Site Generation](#setting-up-astro-for-static-site-generation)
+4. [Adding 3D Elements with ThreeJS](#adding-3d-elements-with-threejs)
+5. [Animating with GSAP](#animating-with-gsap)
+6. [Smoothing Transitions with Framer Motion](#smoothing-transitions-with-framer-motion)
+7. [Setting Up a Markdown Blog](#setting-up-a-markdown-blog)
+8. [Challenges and Lessons Learned](#challenges-and-lessons-learned)
+9. [Conclusion](#conclusion)
 
-Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut
-consequat semper viverra. Tellus mauris a diam maecenas sed enim ut sem viverra.
-Venenatis urna cursus eget nunc scelerisque viverra mauris in. Arcu ac tortor
-dignissim convallis aenean et tortor at. Curabitur gravida arcu ac tortor
-dignissim convallis aenean et tortor. Egestas tellus rutrum tellus pellentesque
-eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices
-tincidunt arcu. Id cursus metus aliquam eleifend mi.
+---
 
-Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus
-imperdiet. Id porta nibh venenatis cras sed felis eget velit. Ipsum a arcu
-cursus vitae. Facilisis magna etiam tempor orci eu lobortis elementum. Tincidunt
-dui ut ornare lectus sit. Quisque non tellus orci ac. Blandit libero volutpat
-sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar proin gravida.
-Egestas integer eget aliquet nibh praesent tristique magna.
+### Project Overview
+
+Before diving into the code, let me give you an overview of what I wanted to achieve. My goal was to create a portfolio that could show off my work in a creative and engaging way. I also wanted to have a blog section to share my thoughts on various web technologies. 
+
+I decided to use the following stack:
+- **Astro** for static site generation.
+- **ThreeJS** for interactive 3D content.
+- **GSAP** for smooth, powerful animations.
+- **Framer Motion** for page transitions and micro-interactions.
+- **Markdown** for easy blog content creation.
+
+---
+
+### Why I Chose These Technologies
+
+#### Astro
+Astro's unique "Island Architecture" allows for fast, SEO-friendly static site generation. I wanted a fast website that didn’t require a heavy front-end framework on every page, so Astro was the perfect fit.
+
+#### ThreeJS
+Since I wanted some 3D elements on the homepage, I chose ThreeJS, which is known for rendering 3D graphics in the browser using WebGL. It’s powerful and easy to integrate with modern front-end frameworks.
+
+#### GSAP
+GSAP (GreenSock Animation Platform) offers unparalleled control over animations. It allowed me to easily create smooth animations that perform well, even with complex 3D objects.
+
+#### Framer Motion
+For smooth page transitions and micro-interactions, Framer Motion is fantastic. Its React-friendly API made it a great choice for transitions between Astro pages and for animating UI elements.
+
+---
+
+### Setting Up Astro for Static Site Generation
+
+I began the project by setting up Astro, which I found to be incredibly intuitive. Here's a basic breakdown of the setup process:
+
+1. **Installing Astro**:
+    ```bash
+    npm init astro
+    ```
+
+2. **Configuring Astro**: Astro makes it easy to customize the site with minimal configuration. I created a basic layout for the site, utilizing partial hydration for components that needed interactivity.
+
+3. **Folder Structure**:
+    Astro encourages a clean folder structure. Here’s how I organized mine:
+    ```
+    /src
+      /components
+      /layouts
+      /pages
+      /public
+    ```
+
+4. **Using Astro Components**: Astro supports lightweight components from various front-end frameworks. For my project, I kept some components static and added interactivity only when necessary, to maintain performance.
+
+---
+
+### Adding 3D Elements with ThreeJS
+
+One of the key features of my website is the interactive 3D elements on the homepage. Here’s how I integrated ThreeJS with Astro:
+
+1. **Installing ThreeJS**:
+    ```bash
+    npm install three
+    ```
+
+2. **Setting Up a Basic Scene**:
+    I started by creating a simple ThreeJS scene with a rotating cube. Here’s the basic code I used to set up the scene:
+    ```js
+    import * as THREE from 'three';
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    camera.position.z = 5;
+
+    const animate = function () {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    };
+
+    animate();
+    ```
+
+3. **Integrating with Astro**: To avoid any performance issues, I only loaded the ThreeJS scene on the pages where it was needed using Astro’s built-in component loading methods.
+
+---
+
+### Animating with GSAP
+
+After setting up the 3D elements, I wanted to animate them using GSAP. Here’s how I did it:
+
+1. **Installing GSAP**:
+    ```bash
+    npm install gsap
+    ```
+
+2. **Basic GSAP Animations**:
+    GSAP makes it easy to add complex animations. Here’s an example of how I animated the cube’s rotation:
+    ```js
+    import { gsap } from 'gsap';
+
+    gsap.to(cube.rotation, { x: 2 * Math.PI, duration: 2, repeat: -1 });
+    ```
+
+3. **Scroll Animations**: I also used GSAP’s scroll trigger to animate elements as they came into view on scroll.
+
+---
+
+### Smoothing Transitions with Framer Motion
+
+Framer Motion allowed me to add smooth transitions between different pages. Here’s how I set it up:
+
+1. **Installing Framer Motion**:
+    ```bash
+    npm install framer-motion
+    ```
+
+2. **Page Transitions**:
+    I created a wrapper component that handled page transitions using Framer Motion’s `AnimatePresence` component:
+    ```jsx
+    import { AnimatePresence, motion } from 'framer-motion';
+
+    const PageTransition = ({ children }) => (
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    );
+
+    export default PageTransition;
+    ```
+
+3. **Using Framer Motion for Micro-Interactions**: Framer Motion also came in handy for animating buttons and other small elements to enhance the user experience.
+
+---
+
+### Setting Up a Markdown Blog
+
+For the blog section, I wanted a simple setup where I could write posts in Markdown. Astro makes this incredibly easy:
+
+1. **Creating Markdown Files**: Each blog post is a Markdown file located in the `/src/pages/blog` folder. Here’s an example post structure:
+    ```
+    /blog
+      /my-first-post.md
+    ```
+
+2. **Frontmatter**: Each Markdown file contains frontmatter to define the metadata (title, date, etc.):
+    ```markdown
+    ---
+    title: "My First Blog Post"
+    date: "2024-10-10"
+    description: "This is the first post on my blog."
+    ---
+    ```
+
+3. **Rendering Markdown in Astro**: Astro automatically converts Markdown files into pages, making it easy to maintain the blog without any additional setup.
+
+---
+
+### Challenges and Lessons Learned
+
+Building the website came with a few challenges:
+- **Performance Optimizations**: Initially, loading heavy 3D elements on every page slowed down the site. I solved this by lazy loading the 3D content and optimizing the ThreeJS scenes.
+- **GSAP vs. Framer Motion**: Deciding when to use GSAP vs. Framer Motion was tricky. I ended up using GSAP for complex 3D animations and Framer Motion for UI interactions and transitions.
+- **Markdown Blog Setup**: Astro’s markdown setup is straightforward, but I did spend some time customizing the styling and layout for the blog.
+
+---
+
+### Conclusion
+
+Overall, building my personal website with Astro, ThreeJS, GSAP, and Framer Motion was a great experience. These technologies allowed me to create a fast, interactive, and visually engaging site. If you're interested in building something similar, I highly recommend experimenting with this stack!
+
+Let me know your thoughts or questions in the comments below!
