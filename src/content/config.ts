@@ -7,7 +7,7 @@ const blog = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
-    heroImage: z.string().optional(),
+    published: z.boolean(),
     color: z.string().optional(),
   }),
 });
@@ -22,7 +22,7 @@ const project = defineCollection({
     speed: z.number().optional(),
     showGallery: z.boolean().optional(),
     offsetAmount: z.number().optional(),
-    galleryImages: z.array(z.string())
+    galleryImages: z.array(z.string()),
   }),
 });
 
