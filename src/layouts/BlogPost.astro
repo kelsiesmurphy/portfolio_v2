@@ -21,7 +21,7 @@ const projects = (await getCollection("project")).sort(
   <body>
     <Navigation {projects} client:load />
     <main class="flex justify-center py-8 px-4 md:py-24">
-      <article class="flex-1 max-w-2xl prose dark:prose-invert">
+      <article class="flex-1 prose dark:prose-invert">
         <div>
           {pubDate && <FormattedDate date={pubDate} />}
           {

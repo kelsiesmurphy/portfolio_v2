@@ -6,14 +6,16 @@ published: true
 color: '#F06318'
 ---
 
-In this post, I'll walk you through how I built my personal website using a combination of [ThreeJS](https://threejs.org/), [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/), and [Astro](https://astro.build/). I’ll also show you how I integrated a Markdown-powered blog. If you're looking to create a highly interactive, performance-driven site, these tools might be perfect for you!
+import EarthCanvas from "@/components/react/Projects/Earth";
+
+Today I'm going to write about how I built my personal website (this website!) using a combination of [Astro](https://astro.build/), [Framer Motion](https://www.framer.com/motion/), [GSAP](https://greensock.com/gsap/), and [ThreeJS](https://threejs.org/). I’ll also touch on I integrated this blog, written in markdown. If you're looking for any ideas to integrate into your own personal website, there might be something in here that may help you!
 
 ### Table of Contents
 
 1. [Project Overview](#project-overview)
 2. [Why I Chose These Technologies](#why-i-chose-these-technologies)
 3. [Setting Up Astro for Static Site Generation](#setting-up-astro-for-static-site-generation)
-4. [Adding 3D Elements with ThreeJS](#adding-3d-elements-with-threejs)
+4. [Adding a 3D Element with ThreeJS](#adding-3d-elements-with-threejs)
 5. [Animating with GSAP](#animating-with-gsap)
 6. [Smoothing Transitions with Framer Motion](#smoothing-transitions-with-framer-motion)
 7. [Setting Up a Markdown Blog](#setting-up-a-markdown-blog)
@@ -24,13 +26,13 @@ In this post, I'll walk you through how I built my personal website using a comb
 
 ### Project Overview
 
-Before diving into the code, let me give you an overview of what I wanted to achieve. My goal was to create a portfolio that could show off my work in a creative and engaging way. I also wanted to have a blog section to share my thoughts on various web technologies. 
+Before diving into the code, let me give you an overview of what I wanted to achieve. My goal was to create a portfolio that could show off my work in a creative and fun way. I also wanted to have a blog section to share my thoughts on various web technologies (good for SEO too eh?).
 
 I decided to use the following stack:
 - **Astro** for static site generation.
-- **ThreeJS** for interactive 3D content.
-- **GSAP** for smooth, powerful animations.
-- **Framer Motion** for page transitions and micro-interactions.
+- **TailwindCSS** for styling.
+- **ThreeJS** for the earth component on the homepage.
+- **GSAP** and **Framer Motion** for smooth, funky animations.
 - **Markdown** for easy blog content creation.
 
 ---
@@ -38,104 +40,56 @@ I decided to use the following stack:
 ### Why I Chose These Technologies
 
 #### Astro
-Astro's unique "Island Architecture" allows for fast, SEO-friendly static site generation. I wanted a fast website that didn’t require a heavy front-end framework on every page, so Astro was the perfect fit.
+Astro's is fast, SEO friendly and really easy to set up. I was inspired by [Jamie McHale](https://www.jamiemchale.com/), who runs my [local Javascript meetup group](https://www.glasgowjs.com/), to try out Astro, and love that I can drop in my own React and Svelte components directly into the code. I think it was an ideal pick for this website. To style the website, I used TailwindCSS, as I enjoy using it and can build out frontend elements quite quickly with it.
 
 #### ThreeJS
-Since I wanted some 3D elements on the homepage, I chose ThreeJS, which is known for rendering 3D graphics in the browser using WebGL. It’s powerful and easy to integrate with modern front-end frameworks.
+I really wanted to have some cool interactive elements on the homepage, and had recently completed the [Three.js Journey](https://threejs-journey.com/) course, and was inspired to add an element of the Earth which would spin around. Later I decided to add this as a backdrop to my projects section, which would spin in a subtle way as the user scrolls down the page.
 
-#### GSAP
-GSAP (GreenSock Animation Platform) offers unparalleled control over animations. It allowed me to easily create smooth animations that perform well, even with complex 3D objects.
+#### GSAP and Framer Motion
+I am not yet an expert on either of these technologies, but I hope to use them in projects in the future, and drew inspiration from [Olivier Larose's blog](https://blog.olivierlarose.com/) for elements on the site.
 
-#### Framer Motion
-For smooth page transitions and micro-interactions, Framer Motion is fantastic. Its React-friendly API made it a great choice for transitions between Astro pages and for animating UI elements.
+#### Markdown
+I enjoy using [Obsidian](https://obsidian.md/) for note-taking, and i'm already used to writing in markdown, so this seemed like a good way to write my blog posts. I took advantage of Astro, MDX for markdown and the Typography plugin for TailwindCSS to create a blog post system that lets me add React or Svelte components directly into the blog posts, as you'll see later in this blog.
 
 ---
 
 ### Setting Up Astro for Static Site Generation
 
-I began the project by setting up Astro, which I found to be incredibly intuitive. Here's a basic breakdown of the setup process:
+I began the project by setting up Astro, which if you want, you can do [from scratch](https://docs.astro.build/en/getting-started/), or use a [pre-built theme as a template](https://astro.build/themes/). I was actually using Deno v2 to set up my website, as it had just been announced and I was curious to try it, but that might be a blog post for another day. This meant I skipped installing a linter, or Prettier, as these came built in with Deno v2. I also installed TailwindCSS and ShadcnUI at this stage.
 
-1. **Installing Astro**:
+1. **Installing Astro from scratch**:
     ```bash
-    npm init astro
+    npm create astro@latest
     ```
-
-2. **Configuring Astro**: Astro makes it easy to customize the site with minimal configuration. I created a basic layout for the site, utilizing partial hydration for components that needed interactivity.
 
 3. **Folder Structure**:
-    Astro encourages a clean folder structure. Here’s how I organized mine:
+    Astro encourages a clean folder structure. Here’s how I organised mine:
     ```
+    /public
     /src
       /components
+        /react
+        /ui
+      /content
+        /blog
+        /project
       /layouts
+      /lib
       /pages
-      /public
+        /blog
+        /projects
+      /styles
     ```
-
-4. **Using Astro Components**: Astro supports lightweight components from various front-end frameworks. For my project, I kept some components static and added interactivity only when necessary, to maintain performance.
 
 ---
 
 ### Adding 3D Elements with ThreeJS
 
-One of the key features of my website is the interactive 3D elements on the homepage. Here’s how I integrated ThreeJS with Astro:
+The part of the website I probably spent the most time on was the earth element that rotates when you scroll past it.
 
-1. **Installing ThreeJS**:
-    ```bash
-    npm install three
-    ```
-
-2. **Setting Up a Basic Scene**:
-    I started by creating a simple ThreeJS scene with a rotating cube. Here’s the basic code I used to set up the scene:
-    ```js
-    import * as THREE from 'three';
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
-
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
-
-    camera.position.z = 5;
-
-    const animate = function () {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    };
-
-    animate();
-    ```
-
-3. **Integrating with Astro**: To avoid any performance issues, I only loaded the ThreeJS scene on the pages where it was needed using Astro’s built-in component loading methods.
-
----
-
-### Animating with GSAP
-
-After setting up the 3D elements, I wanted to animate them using GSAP. Here’s how I did it:
-
-1. **Installing GSAP**:
-    ```bash
-    npm install gsap
-    ```
-
-2. **Basic GSAP Animations**:
-    GSAP makes it easy to add complex animations. Here’s an example of how I animated the cube’s rotation:
-    ```js
-    import { gsap } from 'gsap';
-
-    gsap.to(cube.rotation, { x: 2 * Math.PI, duration: 2, repeat: -1 });
-    ```
-
-3. **Scroll Animations**: I also used GSAP’s scroll trigger to animate elements as they came into view on scroll.
+{/* <section class="bg-[#24292e] h-96 rounded-lg flex items-center justify-center">
+  <EarthCanvas client:only />
+</section> */}
 
 ---
 
@@ -150,23 +104,7 @@ Framer Motion allowed me to add smooth transitions between different pages. Here
 
 2. **Page Transitions**:
     I created a wrapper component that handled page transitions using Framer Motion’s `AnimatePresence` component:
-    ```jsx
-    import { AnimatePresence, motion } from 'framer-motion';
 
-    const PageTransition = ({ children }) => (
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    );
-
-    export default PageTransition;
-    ```
 
 3. **Using Framer Motion for Micro-Interactions**: Framer Motion also came in handy for animating buttons and other small elements to enhance the user experience.
 
@@ -187,7 +125,7 @@ For the blog section, I wanted a simple setup where I could write posts in Markd
     ---
     title: "My First Blog Post"
     date: "2024-10-10"
-    description: "This is the first post on my blog."
+    description: "This is the first blog."
     ---
     ```
 
