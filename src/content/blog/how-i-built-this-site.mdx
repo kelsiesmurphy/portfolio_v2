@@ -14,13 +14,11 @@ Today I'm going to write about how I built my personal website (this website!) u
 
 1. [Project Overview](#project-overview)
 2. [Why I Chose These Technologies](#why-i-chose-these-technologies)
-3. [Setting Up Astro for Static Site Generation](#setting-up-astro-for-static-site-generation)
+3. [Setting Up Astro](#setting-up-astro)
 4. [Adding a 3D Element with ThreeJS](#adding-3d-elements-with-threejs)
-5. [Animating with GSAP](#animating-with-gsap)
-6. [Smoothing Transitions with Framer Motion](#smoothing-transitions-with-framer-motion)
-7. [Setting Up a Markdown Blog](#setting-up-a-markdown-blog)
-8. [Challenges and Lessons Learned](#challenges-and-lessons-learned)
-9. [Conclusion](#conclusion)
+5. [Setting Up a Markdown Blog](#setting-up-a-markdown-blog)
+6. [Challenges and Lessons Learned](#challenges-and-lessons-learned)
+7. [Conclusion](#conclusion)
 
 ---
 
@@ -53,7 +51,7 @@ I enjoy using [Obsidian](https://obsidian.md/) for note-taking, and i'm already 
 
 ---
 
-### Setting Up Astro for Static Site Generation
+### Setting Up Astro
 
 I began the project by setting up Astro, which if you want, you can do [from scratch](https://docs.astro.build/en/getting-started/), or use a [pre-built theme as a template](https://astro.build/themes/). I was actually using Deno v2 to set up my website, as it had just been announced and I was curious to try it, but that might be a blog post for another day. This meant I skipped installing a linter, or Prettier, as these came built in with Deno v2. I also installed TailwindCSS and ShadcnUI at this stage.
 
@@ -87,63 +85,42 @@ I began the project by setting up Astro, which if you want, you can do [from scr
 
 The part of the website I probably spent the most time on was the earth element that rotates when you scroll past it.
 
-{/* <section class="bg-[#24292e] h-96 rounded-lg flex items-center justify-center">
+<section class="bg-[#24292e] h-96 rounded-lg flex items-center justify-center">
   <EarthCanvas client:only />
-</section> */}
+</section>
 
----
-
-### Smoothing Transitions with Framer Motion
-
-Framer Motion allowed me to add smooth transitions between different pages. Here’s how I set it up:
-
-1. **Installing Framer Motion**:
-    ```bash
-    npm install framer-motion
-    ```
-
-2. **Page Transitions**:
-    I created a wrapper component that handled page transitions using Framer Motion’s `AnimatePresence` component:
-
-
-3. **Using Framer Motion for Micro-Interactions**: Framer Motion also came in handy for animating buttons and other small elements to enhance the user experience.
+It started out as a sphere in ThreeJS, adding a light source and camera, but after [borrowing some nice shaders and textures](https://threejs.org/examples/webgpu_tsl_earth.html) and experimenting for a while, it ended up as you can see on the [homepage](/), behind the projects section. I really enjoy working with ThreeJS, and I will likely tweak this over time.
 
 ---
 
 ### Setting Up a Markdown Blog
 
-For the blog section, I wanted a simple setup where I could write posts in Markdown. Astro makes this incredibly easy:
+For the blog section, I wanted a simple setup where I could write posts in Markdown. This is really simple to set up in Astro
 
-1. **Creating Markdown Files**: Each blog post is a Markdown file located in the `/src/pages/blog` folder. Here’s an example post structure:
+1. **Creating Markdown Files**: As shown in the folder structure section earlier, each blog post is a MDX file located in the `/src/content/blog` folder. Here’s an example post structure:
     ```
     /blog
-      /my-first-post.md
+      /my-first-post.mdx
     ```
 
-2. **Frontmatter**: Each Markdown file contains frontmatter to define the metadata (title, date, etc.):
-    ```markdown
-    ---
-    title: "My First Blog Post"
-    date: "2024-10-10"
-    description: "This is the first blog."
-    ---
-    ```
+    A [MDX](https://mdxjs.com/) file is basically a markdown file, but it allows you to import jsx components into your markdown file. I actually did it above with the Earth example! It's perfect for me, as I predicted I would occasionally be showing components within my blog posts, whilst also keeping the simplicity of markdown for a personal blog.
 
-3. **Rendering Markdown in Astro**: Astro automatically converts Markdown files into pages, making it easy to maintain the blog without any additional setup.
+2. **Frontmatter**: Each Markdown file contains frontmatter to define the metadata (title, date, etc.). This allows me to have a published flag and even a specific colour for each blog post for the fun hover effect on the [blog list](/blog).
+
+
+3. **Rendering Markdown in Astro**: I have a layout file, BlogPost.astro, that formats the layout of the page, with the navigation bar and any other shared components, but then it's just pulling in the blog from it's Astro collection using the slug param in the URL, and rendering the blog post.
 
 ---
 
 ### Challenges and Lessons Learned
 
 Building the website came with a few challenges:
-- **Performance Optimizations**: Initially, loading heavy 3D elements on every page slowed down the site. I solved this by lazy loading the 3D content and optimizing the ThreeJS scenes.
-- **GSAP vs. Framer Motion**: Deciding when to use GSAP vs. Framer Motion was tricky. I ended up using GSAP for complex 3D animations and Framer Motion for UI interactions and transitions.
-- **Markdown Blog Setup**: Astro’s markdown setup is straightforward, but I did spend some time customizing the styling and layout for the blog.
+- **Sustainability**: Previous versions of my portfolio have been extremely minimal, with a complete focus on web sustainability. I made additional compromises this time round to showcase some fun tools i've been working with, such as the ThreeJS globe and the fun animations. I have still ensured the website runs on green energy, hosted with Netlify, and in my testing using [websitecarbon.com](https://kelsiesmurphy.com/), my website still performed better than 98% of websites with only 0.2g of carbon produced per page load, so it could be worse.
+- **GSAP and Framer Motion**: As mentioned, I had little experience with web animations before starting on this portfolio. Olivier Larose's blog was immensely helpful, as was the rest of Google, but I plan to spend some time gaining a deeper understanding of the intricacies of web animation using GSAP and Framer Motion. (down the rabbit hole I go!)
+- **General Design**: Anyone who knows me knows that whilst I design my own projects and websites, I do have a specific style, usually minimal, closely adhering to TailwindCSS, ShadcnUI and UntitledUI design principles, but I intentionally moved (mostly) away from that for this portfolio project, which was fun, albiet challenging!
 
 ---
 
 ### Conclusion
 
-Overall, building my personal website with Astro, ThreeJS, GSAP, and Framer Motion was a great experience. These technologies allowed me to create a fast, interactive, and visually engaging site. If you're interested in building something similar, I highly recommend experimenting with this stack!
-
-Let me know your thoughts or questions in the comments below!
+Overall, I had a lot of fun building this website, and highly recommend to others that if you're interested in frontend development, spend some time having fun with your personal website! If anyone wants to chat, to roast my site or otherwise, contact me on [LinkedIn](https://www.linkedin.com/in/kelsiesmurphy/) or email at [kelsie@kelsiesmurphy.com](mailto:kelsie@kelsiesmurphy.com)
